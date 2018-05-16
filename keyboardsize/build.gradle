@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.novoda.bintray-release'
+
 
 android {
     compileSdkVersion 27
@@ -24,6 +26,17 @@ android {
     }
 
 }
+
+publish {
+    groupId = 'thevoid.iam.keyboardsize'
+    artifactId = 'keyboardsize'
+    publishVersion = '0.1'
+    desc = 'Util for determine keyboard height on appear in callback'
+    licences = ['Apache-2.0']
+    uploadName = 'KeyboardSize'
+    website = 'https://github.com/iamthevoid/KeyboardSize.git'
+}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
