@@ -34,7 +34,7 @@ publish {
     desc = 'Util for determine keyboard height on appear in callback'
     licences = ['Apache-2.0']
     uploadName = 'KeyboardSize'
-    website = 'https://github.com/iamthevoid/KeyboardSize.git'
+    website = 'https://github.com/iamthevoid/android-keyboard-size.git'
 }
 
 
