@@ -30,7 +30,7 @@ android {
 publish {
     groupId = 'thevoid.iam.keyboardsize'
     artifactId = 'keyboardsize'
-    publishVersion = '0.1'
+    publishVersion = '0.1.1'
     desc = 'Util for determine keyboard height on appear in callback'
     licences = ['Apache-2.0']
     uploadName = 'KeyboardSize'
