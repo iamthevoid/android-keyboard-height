@@ -1,25 +1,33 @@
 package thevoid.iam.keyboardsizedemo
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.DisplayMetrics
-import kotlinx.android.synthetic.main.activity_main.*
-import iam.thevoid.keyboard.height.KeyboardListener
-import iam.thevoid.keyboard.height.KeyboardHeight
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import iam.thevoid.keyboard.height.Parameters
+import iam.thevoid.keyboard.height.rx1.RxKeyboardHeight
+import kotlinx.android.synthetic.main.activity_main.*
+import rx.Subscription
 
 
-class MainActivity : AppCompatActivity(), KeyboardListener {
-    @SuppressLint("SetTextI18n")
-    override fun onKeyboardChanged(parameters : Parameters) {
-        tv.text = "Keyboard height: ${parameters.keyboardHeightPixels} px, ${parameters.keyboardHeightPixels / (resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT).toInt()} dp"
-    }
+class MainActivity : AppCompatActivity() {
 
+    private var subscription : Subscription? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        KeyboardHeight(this, this)
+        subscription = RxKeyboardHeight.observeKeyboardHeight(this)
+                .subscribe(::showHeight) { Log.e("MainActivity", "Error", it)}
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        subscription?.unsubscribe()
+    }
+
+    private fun showHeight(parameters: Parameters) {
+        Log.i("MainActivity", "$parameters")
+        tv.text = "Keyboard height: ${parameters.keyboardHeightPixels} px, ${parameters.keyboardHeightPixels / (resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT).toInt()} dp"
     }
 }

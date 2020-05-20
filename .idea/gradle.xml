@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/keyboard-height" />
+            <option value="$PROJECT_DIR$/rx1-keyboard-height" />
+            <option value="$PROJECT_DIR$/rx2-keyboard-height" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

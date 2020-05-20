@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion compileSdk
+
+    defaultConfig {
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+        versionCode 1
+        versionName libVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+publish {
+    groupId = libGroupId
+    artifactId = 'rx2'
+    publishVersion = libVersion
+    desc = 'RxJava2 implementation of keyboard height library'
+    licences = [libLicence]
+    uploadName = libUploadName
+    userOrg = libOrg
+    website = libUrl
+    bintrayUser = libBintrayUser
+    bintrayKey = libBintrayKey
+}
+
+dependencies {
+
+    api project(path: ':keyboard-height')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+
+    implementation "io.reactivex.rxjava2:rxjava:$rxJava2"
+
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$ajunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+}

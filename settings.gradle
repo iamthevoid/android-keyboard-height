@@ -1,1 +1,3 @@
 include ':app', ':keyboard-height'
+include ':rx1-keyboard-height'
+include ':rx2-keyboard-height'
