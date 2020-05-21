@@ -23,7 +23,7 @@ ext {
 
     kotlinJvmTarget = "1.8"
 
-    libVersion = '0.2.0'
+    libVersion = '1.0.0'
     libGroupId = 'iam.thevoid.keyboard.height'
     libOrg = 'iamthevoid'
     libUploadName = 'KeyboardHeight'

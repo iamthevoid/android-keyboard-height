@@ -22,10 +22,10 @@
             KeyboardHeight
         </text>
         <text fill="#010101" x="102" fill-opacity=".3" y="15" class="tMove">
-            0.2.0
+            1.0.0
         </text>
         <text x="102" id="vText" y="14" class="tMove">
-            0.2.0
+            1.0.0
         </text>
     </g>
 </svg>

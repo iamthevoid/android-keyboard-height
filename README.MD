@@ -58,21 +58,21 @@ maven { url "https://dl.bintray.com/iamthevoid/maven/" }
 ``` 
 RxJava 1
  ```groovy 
- implementation "iam.thevoid.keyboard.height:rx1:0.2.0"  
+ implementation "iam.thevoid.keyboard.height:rx1:1.0.0"  
  ``` 
  RxJava 2
  ```groovy 
- implementation "iam.thevoid.keyboard.height:rx2:0.2.0"  
+ implementation "iam.thevoid.keyboard.height:rx2:1.0.0"  
  ``` 
  RxJava 3
  ```groovy 
- implementation "iam.thevoid.keyboard.height:rx3:0.2.0"  
+ implementation "iam.thevoid.keyboard.height:rx3:1.0.0"  
  ```
  Coroutines 
  ```groovy 
- implementation "iam.thevoid.keyboard.height:coroutines:0.2.0"  
+ implementation "iam.thevoid.keyboard.height:coroutines:1.0.0"  
  ```
  Raw with callback
  ```groovy 
- implementation "iam.thevoid.keyboard.height:callback:0.2.0"  
+ implementation "iam.thevoid.keyboard.height:callback:1.0.0"  
  ```
