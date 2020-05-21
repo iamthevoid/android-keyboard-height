@@ -12,3 +12,7 @@ data class Parameters(val keyboardHeightPixels : Int, val screenOrientation : In
     val isKeyboardOnScreen
         get() = keyboardHeightPixels > 0
 }
+
+fun Parameters.hasValues(keyboardHeightPixels : Int, screenOrientation : Int) =
+        this.keyboardHeightPixels == keyboardHeightPixels &&
+                this.screenOrientation == screenOrientation

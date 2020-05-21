@@ -7,6 +7,7 @@ import android.graphics.Rect
 import android.os.Build
 import android.view.View
 import android.view.ViewTreeObserver
+import iam.thevoid.ae.asActivity
 import java.lang.ref.WeakReference
 
 
@@ -56,7 +57,8 @@ class KeyboardHeight(activity : Activity, private val keyboardListener : Keyboar
 
     private fun handleOnGlobalLayout() {
         val view = this.view.get() ?: return
-        val activity = view.context?.let(::getActivity) ?: return
+
+        val activity = view.context.asActivity()
 
         activity.windowManager.defaultDisplay.getSize(point)
 
@@ -66,13 +68,13 @@ class KeyboardHeight(activity : Activity, private val keyboardListener : Keyboar
         // and also using the status bar and navigation bar heights of the phone to calculate
         // the keyboard height. But this worked fine on a Nexus.
         val keyboardHeight = point.y - rect.bottom
+        val orientation = activity.resources.configuration.orientation
 
         if (keyboardHeight != 0)
             this.keyboardLandscapeHeight = keyboardHeight
 
-        val parameters = Parameters(keyboardHeight,
-                activity.resources.configuration.orientation)
-        if (parameters != last) {
+        if (last.let { it == null || !it.hasValues(keyboardHeight, orientation) }) {
+            val parameters = Parameters(keyboardHeight, orientation)
             keyboardListener.onKeyboardChanged(parameters)
             last = parameters
         }

@@ -26,9 +26,9 @@ android {
 
 publish {
     groupId = libGroupId
-    artifactId = 'rx1'
+    artifactId = 'coroutines'
     publishVersion = libVersion
-    desc = 'RxJava1 implementation of keyboard height library'
+    desc = 'Coroutines implementation of keyboard height library'
     licences = [libLicence]
     uploadName = libUploadName
     userOrg = libOrg
@@ -42,9 +42,10 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$appcompat"
 
-    implementation "io.reactivex:rxjava:$rxJava1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+
+    implementation "androidx.appcompat:appcompat:$appcompat"
 
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test.ext:junit:$ajunit"

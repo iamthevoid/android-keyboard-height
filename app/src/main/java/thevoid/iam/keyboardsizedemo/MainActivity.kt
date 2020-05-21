@@ -5,25 +5,30 @@ import android.util.DisplayMetrics
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import iam.thevoid.keyboard.height.Parameters
-import iam.thevoid.keyboard.height.rx1.RxKeyboardHeight
+import iam.thevoid.keyboard.height.coroutines.KeyboardHeight
 import kotlinx.android.synthetic.main.activity_main.*
-import rx.Subscription
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.FlowCollector
 
+@OptIn(InternalCoroutinesApi::class)
+class MainActivity : AppCompatActivity(), CoroutineScope by CoroutineScope(Dispatchers.Main) {
 
-class MainActivity : AppCompatActivity() {
-
-    private var subscription : Subscription? = null
+    var job : Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        subscription = RxKeyboardHeight.observeKeyboardHeight(this)
-                .subscribe(::showHeight) { Log.e("MainActivity", "Error", it)}
+        job = launch {
+            KeyboardHeight.observeKeyboardHeight(this@MainActivity)
+                    .collect(object : FlowCollector<Parameters> {
+                        override suspend fun emit(value: Parameters) = showHeight(value)
+                    })
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        subscription?.unsubscribe()
+        job?.cancel()
     }
 
     private fun showHeight(parameters: Parameters) {

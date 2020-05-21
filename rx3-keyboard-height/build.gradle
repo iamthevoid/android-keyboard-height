@@ -22,13 +22,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 publish {
     groupId = libGroupId
-    artifactId = 'rx1'
+    artifactId = 'rx3'
     publishVersion = libVersion
-    desc = 'RxJava1 implementation of keyboard height library'
+    desc = 'RxJava3 implementation of keyboard height library'
     licences = [libLicence]
     uploadName = libUploadName
     userOrg = libOrg
@@ -44,7 +45,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$appcompat"
 
-    implementation "io.reactivex:rxjava:$rxJava1"
+    implementation "io.reactivex.rxjava3:rxjava:$rxJava3"
 
     testImplementation "junit:junit:$junit"
     androidTestImplementation "androidx.test.ext:junit:$ajunit"
